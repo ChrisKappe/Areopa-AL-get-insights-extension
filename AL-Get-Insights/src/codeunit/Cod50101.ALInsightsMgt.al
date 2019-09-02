@@ -28,7 +28,7 @@ codeunit 50101 "AIR AL Insights Mgt."
             TopTenDaysFilter := TopTenDaysFilter + '|' + Format(TopDate);
     end;
 
-    local procedure GetTop10BestSellingItemsOnTop10BestSellingDays(TopTenDaysFilter: Text; ItemBuff: Record "Name/Value Buffer" temporary)
+    local procedure GetTop10BestSellingItemsOnTop10BestSellingDays(TopTenDaysFilter: Text; var ItemBuff: Record "Name/Value Buffer" temporary)
     var
         Top10BestSellingItems: Query "AIR Get Top 10 best items";
     begin
@@ -39,12 +39,10 @@ codeunit 50101 "AIR AL Insights Mgt."
         Top10BestSellingItems.Close;
     end;
 
-    local procedure ShowTop10BestSellingItemsOnTop10BestSellingDays(ItemBuff: Record "Name/Value Buffer" temporary)
+    local procedure ShowTop10BestSellingItemsOnTop10BestSellingDays(var ItemBuff: Record "Name/Value Buffer" temporary)
     var
-        Top10Items: Page "AIR Top 10 Items";
     begin
-        Top10Items.SetTableView(ItemBuff);
-        Top10Items.Run();
+        Page.RunModal(Page::"AIR Top 10 Items", ItemBuff);
     end;
 
 }
