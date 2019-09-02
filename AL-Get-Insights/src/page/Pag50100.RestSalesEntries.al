@@ -90,14 +90,14 @@ page 50100 "AIR RestSalesEntries"
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedCategory = Process;
-                Caption = 'Top 10 Items';
-                ToolTip = 'Get Top 10 Items in Top 10 Sales Days with the power of Python Azure Functions';
+                Caption = 'AL: Top 10 Items';
+                ToolTip = 'Get Top 10 Items in Top 10 Sales Days with AL';
                 Image = Sales;
                 trigger OnAction();
                 var
-                    InsightsMgt: Codeunit "AIR Insights Mgt.";
+                    ALInsightsMgt: Codeunit "AIR AL Insights Mgt.";
                 begin
-                    InsightsMgt.GetTop10ItemsInsight();
+                    ALInsightsMgt.GetTop10ItemsInsight();
                 end;
 
             }

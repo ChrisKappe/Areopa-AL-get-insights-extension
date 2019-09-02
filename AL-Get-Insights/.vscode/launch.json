@@ -5,10 +5,10 @@
             "type": "al",
             "request": "launch",
             "name": "Your own server",
-            "server": "http://localhost",
-            "serverInstance": "BC130",
+            "server": "http://BCLatestUS",
+            "serverInstance": "NAV",
             "authentication": "UserPassword",
-            "startupObjectId": 22,
+            "startupObjectId": 50100,
             "startupObjectType": "Page",
             "breakOnError": true,
             "launchBrowser": true
