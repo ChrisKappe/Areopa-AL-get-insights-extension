@@ -1,0 +1,26 @@
+{
+  "id": "5ce940d7-1ef3-456e-b537-c01999410d4c",
+  "name": "AL-Get-Insights",
+  "publisher": "Dmitry Katson",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "14.0.0.0",
+  "application": "14.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50149
+    }
+  ],
+  "contextSensitiveHelpUrl": "https://AL-Get-Insights.com/help/",
+  "showMyCode": true,
+  "runtime": "3.2"
+}
