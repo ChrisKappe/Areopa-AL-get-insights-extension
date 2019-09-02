@@ -4,10 +4,16 @@ codeunit 50101 "AIR AL Insights Mgt."
     var
         TopTenDaysFilter: text;
         ItemBuff: Record "Name/Value Buffer" temporary;
+        StartExecutionTime: Time;
     begin
+        StartExecutionTime := System.Time;
+
         GetTop10BestSellingDays(TopTenDaysFilter);
         GetTop10BestSellingItemsOnTop10BestSellingDays(TopTenDaysFilter, ItemBuff);
+        ShowTotalExecutionTime(StartExecutionTime, System.Time);
+
         ShowTop10BestSellingItemsOnTop10BestSellingDays(ItemBuff);
+
     end;
 
     local procedure GetTop10BestSellingDays(var TopTenDaysFilter: Text)
@@ -43,6 +49,11 @@ codeunit 50101 "AIR AL Insights Mgt."
     var
     begin
         Page.RunModal(Page::"AIR Top 10 Items", ItemBuff);
+    end;
+
+    local procedure ShowTotalExecutionTime(StartTime: time; EndTime: time)
+    begin
+        Message('Execution time is %1 sec', (EndTime - StartTime) / 1000);
     end;
 
 }

@@ -8,7 +8,7 @@ query 50101 "AIR Get Top 10 best items"
     {
         dataitem(AIRRestSalesEntry; "AIR RestSalesEntry")
         {
-            column(date; date)
+            filter(date; date)
             {
             }
             column(menu_item; menu_item)
@@ -17,6 +17,7 @@ query 50101 "AIR Get Top 10 best items"
             }
             column(orders; orders)
             {
+                Method = Sum;
             }
         }
     }

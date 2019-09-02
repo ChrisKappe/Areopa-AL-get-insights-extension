@@ -4,6 +4,7 @@ query 50100 "AIR Get Top 10 best days"
     OrderBy = descending (orders);
     TopNumberOfRows = 10;
 
+
     elements
     {
         dataitem(AIRRestSalesEntry; "AIR RestSalesEntry")
@@ -13,6 +14,7 @@ query 50100 "AIR Get Top 10 best days"
             }
             column(orders; orders)
             {
+                Method = Sum;
             }
         }
     }
