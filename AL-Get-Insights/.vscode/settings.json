@@ -1,0 +1,6 @@
+{
+    "CRS.ObjectNamePrefix": "AIR ",
+    "CRS.OnSaveAlFileAction": "Reorganize",
+    "CRS.RemovePrefixFromFilename": true,
+    "CRS.RenameWithGit": true
+}
