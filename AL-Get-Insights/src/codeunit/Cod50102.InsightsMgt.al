@@ -3,8 +3,13 @@ codeunit 50102 "AIR Insights Mgt."
     procedure GetTop10ItemsInsight()
     var
         InsightsJsonResponse: Text;
+        StartExecutionTime: Time;
     begin
+        StartExecutionTime := System.Time;
+
         SendSalesTransactionsToAzure(InsightsJsonResponse);
+
+        ShowTotalExecutionTime(StartExecutionTime, System.Time);
         SaveAndShowResult(InsightsJsonResponse);
     end;
 
@@ -129,5 +134,10 @@ codeunit 50102 "AIR Insights Mgt."
         if not JsonObject.Get(Property, JsonToken) then exit;
         JsonValue := JsonToken.AsValue;
         Exit(true);
+    end;
+
+    local procedure ShowTotalExecutionTime(StartTime: time; EndTime: time)
+    begin
+        Message('Execution time is %1 sec', (EndTime - StartTime) / 1000);
     end;
 }
