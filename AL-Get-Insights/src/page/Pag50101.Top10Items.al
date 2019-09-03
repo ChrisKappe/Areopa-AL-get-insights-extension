@@ -1,22 +1,24 @@
 page 50101 "AIR Top 10 Items"
 {
-
     PageType = List;
-    SourceTable = "Name/Value Buffer";
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "Top Customers By Sales Buffer";
     Caption = 'Top 10 Items';
     Editable = false;
 
     layout
     {
-        area(content)
+        area(Content)
         {
-            repeater(General)
+            repeater(GroupName)
             {
-                field(Name; Name)
+                field(CustomerName; CustomerName)
                 {
                     ApplicationArea = All;
+                    Caption = 'Item Description';
                 }
-                field(Value; Value)
+                field(SalesLCY; SalesLCY)
                 {
                     ApplicationArea = All;
                 }
