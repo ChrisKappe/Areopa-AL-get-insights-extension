@@ -2,6 +2,5 @@
     "azureFunctions.deploySubpath": "Python-Azure-Function-Insights.zip",
     "azureFunctions.projectLanguage": "Python",
     "azureFunctions.projectRuntime": "~2",
-    "azureFunctions.preDeployTask": "func: pack",
-    "python.pythonPath": "C:\\Users\\vmadmin\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe"
+    "azureFunctions.preDeployTask": "func: pack"
 }
