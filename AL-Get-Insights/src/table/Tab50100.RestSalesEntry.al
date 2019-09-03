@@ -47,6 +47,10 @@ table 50100 "AIR RestSalesEntry"
         {
             CaptionML = ENU = 'fest_name';
         }
+        field(97; "s_day_of_the_week"; Text[30])
+        {
+
+        }
         field(98; "s_month"; Integer)
         {
         }

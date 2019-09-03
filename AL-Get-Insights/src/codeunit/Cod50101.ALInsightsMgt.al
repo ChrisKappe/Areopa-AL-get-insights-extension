@@ -8,6 +8,8 @@ codeunit 50101 "AIR AL Insights Mgt."
     begin
         StartExecutionTime := System.Time;
 
+        SetDayOfTheWeekOnAllTransactions(); //new step
+
         GetTop10BestSellingDays(TopTenDaysFilter);
         GetTop10BestSellingItemsOnTop10BestSellingDays(TopTenDaysFilter, ItemBuff);
         ShowTotalExecutionTime(StartExecutionTime, System.Time);
@@ -34,21 +36,51 @@ codeunit 50101 "AIR AL Insights Mgt."
             TopTenDaysFilter := TopTenDaysFilter + '|' + Format(TopDate);
     end;
 
+    local procedure SetDayOfTheWeekOnAllTransactions()
+    var
+        RestSalesEntry: Record "AIR RestSalesEntry";
+    begin
+        with RestSalesEntry do begin
+            if FindSet() then
+                repeat
+                    s_day_of_the_week := getDayOfTheWeek(date);
+                    Modify();
+                until next = 0;
+            Commit;
+        end;
+    end;
+
+    local procedure getDayOfTheWeek(SalesDate: Date): Text
+    var
+        date: Record date;
+    begin
+        date.Get(date."Period Type"::Date, SalesDate);
+        exit(date."Period Name");
+    end;
+
     local procedure GetTop10BestSellingItemsOnTop10BestSellingDays(TopTenDaysFilter: Text; var ItemBuff: Record "Name/Value Buffer" temporary)
     var
-        Top10BestSellingItems: Query "AIR Get Top 10 best items";
+        Top10BestSellingItemsWD: Query "AIR Get Top 10 best items WD";
     begin
-        Top10BestSellingItems.SetFilter(date, TopTenDaysFilter);
-        Top10BestSellingItems.Open();
-        while Top10BestSellingItems.Read() do
-            ItemBuff.AddNewEntry(Top10BestSellingItems.menu_item, format(Top10BestSellingItems.orders));
-        Top10BestSellingItems.Close;
+        Top10BestSellingItemsWD.SetFilter(date, TopTenDaysFilter);
+        Top10BestSellingItemsWD.Open();
+        while Top10BestSellingItemsWD.Read() do begin
+            AddNewEntryToBuffer(Top10BestSellingItemsWD.s_day_of_the_week, Top10BestSellingItemsWD.menu_item, format(Top10BestSellingItemsWD.orders), ItemBuff);
+        end;
+        Top10BestSellingItemsWD.Close;
+    end;
+
+    local procedure AddNewEntryToBuffer(NewName: text; NewLongName: Text; NewValue: Text; var ItemBuff: Record "Name/Value Buffer" temporary)
+    begin
+        ItemBuff.AddNewEntry(NewName, NewValue);
+        ItemBuff."Value Long" := NewLongName;
+        ItemBuff.Modify();
     end;
 
     local procedure ShowTop10BestSellingItemsOnTop10BestSellingDays(var ItemBuff: Record "Name/Value Buffer" temporary)
     var
     begin
-        Page.RunModal(Page::"AIR Top 10 Items", ItemBuff);
+        Page.RunModal(Page::"AIR Top 10 Items WD", ItemBuff);
     end;
 
     local procedure ShowTotalExecutionTime(StartTime: time; EndTime: time)

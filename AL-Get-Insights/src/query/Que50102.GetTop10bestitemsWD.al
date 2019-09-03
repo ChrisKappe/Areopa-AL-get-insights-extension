@@ -1,4 +1,4 @@
-query 50101 "AIR Get Top 10 best items"
+query 50102 "AIR Get Top 10 best items WD"
 {
     QueryType = Normal;
     OrderBy = descending (orders);
@@ -17,6 +17,10 @@ query 50101 "AIR Get Top 10 best items"
             //{
             //    Method = 
             //}
+            column(s_day_of_the_week; s_day_of_the_week)
+            {
+
+            }
 
             column(menu_item; menu_item)
             {

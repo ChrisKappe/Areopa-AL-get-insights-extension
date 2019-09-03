@@ -1,9 +1,9 @@
-page 50102 "AIR Top 10 Items WD"
+page 50101 "AIR Top 10 Items"
 {
 
     PageType = List;
     SourceTable = "Name/Value Buffer";
-    Caption = 'Top 10 Items by Weekday';
+    Caption = 'Top 10 Items';
     Editable = false;
 
     layout
@@ -13,10 +13,6 @@ page 50102 "AIR Top 10 Items WD"
             repeater(General)
             {
                 field(Name; Name)
-                {
-                    ApplicationArea = All;
-                }
-                field("Value Long"; "Value Long")
                 {
                     ApplicationArea = All;
                 }
